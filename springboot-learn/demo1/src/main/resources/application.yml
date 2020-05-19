@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: demo
+server:
+  port: 8080
+
+---
+
+spring:
+  profiles: dev
+  application:
+    name: demo-dev
+server:
+  port: 9090
+
+---
+
+spring:
+  profiles: prod
+  application:
+    name: demo-prod
+server:
+  port: 80
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  server:
+    port: 8761
+
+
+

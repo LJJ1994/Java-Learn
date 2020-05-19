@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 配置 properties 文件的位置 -->
+    <properties resource="jdbcConfig.properties"/>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 配置二级缓存 -->
+        <!-- 开启二级缓存的支持 -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- 配置别名的注册 -->
+    <typeAliases>
+        <package name="com.itheima.domain"/>
+    </typeAliases>
+    <!-- 配置环境 -->
+    <environments default="mysql">
+        <!-- 配置 mysql 的环境 -->
+        <environment id="mysql">
+            <!-- 配置事务的类型是 JDBC -->
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据源 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 配置 dao 接口的位置，它有两种方式
+        第一种：使用 mapper 标签配置 class 属性
+        第二种：使用 package 标签，直接指定 dao 接口所在的包
+        -->
+        <package name="com.itheima.dao"/>
+    </mappers>
+</configuration>
